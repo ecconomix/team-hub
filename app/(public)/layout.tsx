@@ -3,5 +3,5 @@ export default function PublicLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>Public layout here {children}</div>;
+  return <>{children}</>;
 }
