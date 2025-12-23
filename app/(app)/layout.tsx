@@ -3,5 +3,5 @@ export default function AppLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>App layout here {children}</div>;
+  return <div>App layout here !{children}</div>;
 }
