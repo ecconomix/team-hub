@@ -1,20 +1,10 @@
-import { auth } from "@/lib/auth";
-import Link from "next/link";
+import { getWorkspacesForUser } from "@/server/workspaces/queries";
+import { redirect } from "next/navigation";
 
 export default async function AppPage() {
-  const session = await auth();
+  const workspaces = await getWorkspacesForUser();
 
-  return (
-    <main>
-      <header className="h-14 flex items-center justify-end px-4 gap-1">
-        <p className="text-sm text-gray-500">{session?.user?.name}</p>
-        <Link
-          href="/api/auth/signout"
-          className="bg-blue-500 text-white px-4 py-1 rounded-md"
-        >
-          Sign out
-        </Link>
-      </header>
-    </main>
-  );
+  if (workspaces.length === 0) {
+    redirect("/app/create-workspace");
+  }
 }
