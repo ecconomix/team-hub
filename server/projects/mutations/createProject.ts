@@ -16,11 +16,7 @@ export const createProject = async ({
   const currentName = name.trim();
   const membership = await getWorkspaceMembership(userId, workspaceId);
 
-  if (!membership) {
-    throw new Error("User is not a member of the workspace");
-  }
-
-  if (!canCreateProject(membership.role)) {
+  if (!membership || !canCreateProject(membership.role)) {
     throw new Error("User does not have permission to create projects");
   }
 

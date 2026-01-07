@@ -11,5 +11,5 @@ export default async function AppPage() {
     redirect("/app/create-workspace");
   }
 
-  redirect(`/app/w/${workspaces[0].id}`);
+  redirect(`/app/w/${workspaces[0].id}/projects`);
 }
