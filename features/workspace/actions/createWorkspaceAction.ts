@@ -1,14 +1,11 @@
 "use server";
 
-import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { createWorkspace } from "@/server/workspaces/mutations/createWorkspace";
+import { getUserID } from "@/lib/auth";
 
 export async function createWorkspaceAction(formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect("/api/auth/signin");
-  }
+  const userId = await getUserID();
 
   const workspaceName = formData.get("workspace-name");
 
@@ -17,7 +14,7 @@ export async function createWorkspaceAction(formData: FormData) {
   }
 
   const { workspaceId } = await createWorkspace({
-    userId: session.user.id,
+    userId: userId,
     name: workspaceName,
   });
 

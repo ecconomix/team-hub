@@ -8,10 +8,7 @@ interface CreateWorkspaceProps {
   name: string;
 }
 
-export async function createWorkspace({
-  userId,
-  name,
-}: CreateWorkspaceProps): Promise<{ workspaceId: string }> {
+export async function createWorkspace({ userId, name }: CreateWorkspaceProps) {
   if (!name.trim()) {
     throw new Error("Workspace name is required");
   }

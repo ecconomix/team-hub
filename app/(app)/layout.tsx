@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
+import { Header } from "@/components/header";
 
 export default async function AppLayout({
   children,
@@ -12,5 +13,10 @@ export default async function AppLayout({
     return redirect("/api/auth/signin");
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <Header session={session} />
+      {children}
+    </>
+  );
 }
