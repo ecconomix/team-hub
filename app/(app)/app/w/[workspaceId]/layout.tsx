@@ -30,12 +30,6 @@ export default async function WorkspaceLayout({
     <>
       <div className="flex flex-col gap-4">
         <h1>Current workspace: {workspace.name}</h1>
-        <div className="flex flex-col gap-2">
-          List of workspaces:
-          {workspaces.map((workspace) => (
-            <div key={workspace.id}>{workspace.name}</div>
-          ))}
-        </div>
       </div>
       {children}
     </>

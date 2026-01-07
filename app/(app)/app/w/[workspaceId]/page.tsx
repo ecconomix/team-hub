@@ -29,7 +29,7 @@ export default async function WorkspacePage({
         </button>
       </form>
 
-      <h2>Projects</h2>
+      <h2>Projects list</h2>
       <div className="flex flex-col gap-2">
         {projects.map((project) => (
           <Link
