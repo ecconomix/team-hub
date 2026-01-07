@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { auth } from "@/lib/auth";
+import { createWorkspaceAction } from "@/features/workspace/actions";
 
 export default async function CreateWorkspacePage() {
   const session = await auth();
@@ -8,7 +9,7 @@ export default async function CreateWorkspacePage() {
     <>
       <Header session={session} />
       <main className="flex flex-col items-center justify-center h-screen">
-        <form className="flex flex-col gap-2">
+        <form action={createWorkspaceAction} className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold">Create Workspace</h1>
           <label htmlFor="workspace-name">Workspace Name</label>
           <input

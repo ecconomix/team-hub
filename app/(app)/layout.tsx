@@ -9,7 +9,7 @@ export default async function AppLayout({
   const session = await auth();
 
   if (!session) {
-    return redirect("/");
+    return redirect("/api/auth/signin");
   }
 
   return <>{children}</>;
