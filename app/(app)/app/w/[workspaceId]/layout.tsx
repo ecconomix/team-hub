@@ -23,7 +23,7 @@ export default async function WorkspaceLayout({
   return (
     <>
       <div className="flex flex-col gap-4">
-        <h1>Current workspace: {workspace.name}</h1>
+        <h1 className="text-2xl font-bold">Workspace: {workspace.name}</h1>
       </div>
       {children}
     </>

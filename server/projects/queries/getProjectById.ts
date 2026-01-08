@@ -4,7 +4,11 @@ export const getProjectById = async (projectId: string) => {
   return await prisma.project.findUnique({
     where: { id: projectId },
     include: {
-      tasks: true,
+      tasks: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
 };
