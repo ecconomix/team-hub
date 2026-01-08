@@ -12,8 +12,8 @@ export default async function ProjectsPage({
   const projects = await getProjectsByWorkspaceId(workspaceId);
 
   return (
-    <>
-      <form action={createProjectAction}>
+    <div className="py-4 flex flex-col gap-4">
+      <form action={createProjectAction} className="flex gap-2">
         <input
           className="border border-gray-300 rounded-md p-2"
           type="text"
@@ -28,18 +28,18 @@ export default async function ProjectsPage({
         </button>
       </form>
 
-      <h2>Projects list</h2>
+      <h2 className="text-lg font-bold">Projects list</h2>
       <div className="flex flex-col gap-2">
         {projects.map((project) => (
           <Link
             href={`/app/w/${workspaceId}/projects/${project.id}`}
             key={project.id}
-            className="cursor-pointer"
+            className="cursor-pointer border border-gray-300 rounded-md p-2 hover:bg-gray-100"
           >
             {project.name}
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 }
