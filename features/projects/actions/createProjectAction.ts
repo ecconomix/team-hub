@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getUserID } from "@/lib/auth";
 import { createProject } from "@/server/projects/mutations/createProject";
+import { AppError, AppErrorCode } from "@/server/errors";
 
 export async function createProjectAction(formData: FormData) {
   const userId = await getUserID();
@@ -10,11 +11,11 @@ export async function createProjectAction(formData: FormData) {
   const workspaceId = formData.get("workspaceId");
 
   if (typeof workspaceId !== "string") {
-    throw new Error("Invalid workspace ID");
+    throw new AppError(AppErrorCode.BAD_REQUEST, "Invalid workspace ID");
   }
 
   if (typeof projectName !== "string") {
-    throw new Error("Invalid project name");
+    throw new AppError(AppErrorCode.BAD_REQUEST, "Invalid project name");
   }
 
   await createProject({

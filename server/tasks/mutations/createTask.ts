@@ -41,7 +41,7 @@ export const createTask = async ({
 
   const task = await prisma.task.create({
     data: {
-      title,
+      title: currentTitle,
       projectId,
       status: TaskStatus.TODO,
     },

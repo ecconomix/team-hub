@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { createWorkspace } from "@/server/workspaces/mutations/createWorkspace";
 import { getUserID } from "@/lib/auth";
+import { AppError, AppErrorCode } from "@/server/errors";
 
 export async function createWorkspaceAction(formData: FormData) {
   const userId = await getUserID();
@@ -10,7 +11,7 @@ export async function createWorkspaceAction(formData: FormData) {
   const workspaceName = formData.get("workspace-name");
 
   if (typeof workspaceName !== "string") {
-    throw new Error("Invalid workspace name");
+    throw new AppError(AppErrorCode.BAD_REQUEST, "Invalid workspace name");
   }
 
   const { workspaceId } = await createWorkspace({

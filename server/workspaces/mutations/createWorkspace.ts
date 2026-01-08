@@ -2,6 +2,7 @@ import "server-only";
 
 import { prisma } from "@/lib/db";
 import { WorkspaceRole } from "@prisma/client";
+import { AppError, AppErrorCode } from "@/server/errors";
 
 interface CreateWorkspaceProps {
   userId: string;
@@ -10,7 +11,7 @@ interface CreateWorkspaceProps {
 
 export async function createWorkspace({ userId, name }: CreateWorkspaceProps) {
   if (!name.trim()) {
-    throw new Error("Workspace name is required");
+    throw new AppError(AppErrorCode.BAD_REQUEST, "Workspace name is required");
   }
 
   const workspace = await prisma.workspace.create({
