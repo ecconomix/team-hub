@@ -18,5 +18,5 @@ export async function createWorkspaceAction(formData: FormData) {
     name: workspaceName,
   });
 
-  redirect(`/app/w/${workspaceId}`);
+  redirect(`/app/w/${workspaceId}/projects`);
 }

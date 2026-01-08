@@ -1,12 +1,13 @@
+import { createTaskAction } from "@/features/tasks/actions";
 import { getProjectById } from "@/server/projects";
 import { notFound } from "next/navigation";
 
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ projectId: string }>;
+  params: Promise<{ projectId: string; workspaceId: string }>;
 }) {
-  const { projectId } = await params;
+  const { projectId, workspaceId } = await params;
 
   const project = await getProjectById(projectId);
 
@@ -23,6 +24,21 @@ export default async function ProjectPage({
           <div key={task.id}>{task.title}</div>
         ))}
       </div>
+      <form action={createTaskAction}>
+        <input
+          className="border border-gray-300 rounded-md p-2"
+          type="text"
+          name="title"
+        />
+        <input type="hidden" name="projectId" value={projectId} />
+        <input type="hidden" name="workspaceId" value={workspaceId} />
+        <button
+          className="bg-blue-500 text-white rounded-md p-2 cursor-pointer"
+          type="submit"
+        >
+          Create Task
+        </button>
+      </form>
     </div>
   );
 }

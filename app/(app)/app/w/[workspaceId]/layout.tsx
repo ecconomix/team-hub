@@ -1,8 +1,5 @@
 import { getUserID } from "@/lib/auth";
-import {
-  getWorkspaceMembership,
-  getWorkspacesForUser,
-} from "@/server/workspaces";
+import { getWorkspaceMembership } from "@/server/workspaces";
 import { getWorkspace } from "@/server/workspaces/queries/getWorkspace";
 import { redirect } from "next/navigation";
 
@@ -17,10 +14,7 @@ export default async function WorkspaceLayout({
   const { workspaceId } = await params;
 
   const membership = await getWorkspaceMembership(userId, workspaceId);
-  const [workspaces, workspace] = await Promise.all([
-    getWorkspacesForUser(userId),
-    getWorkspace(workspaceId),
-  ]);
+  const workspace = await getWorkspace(workspaceId);
 
   if (!membership || !workspace) {
     redirect("/app");

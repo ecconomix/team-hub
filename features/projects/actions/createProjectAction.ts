@@ -23,5 +23,5 @@ export async function createProjectAction(formData: FormData) {
     userId,
   });
 
-  revalidatePath(`/app/w/${workspaceId}`);
+  revalidatePath(`/app/w/${workspaceId}/projects`);
 }

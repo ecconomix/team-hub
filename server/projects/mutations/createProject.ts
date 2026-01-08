@@ -1,3 +1,4 @@
+import { getUserID } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { canCreateProject } from "@/lib/permissions";
 import { getWorkspaceMembership } from "@/server/workspaces";
@@ -11,8 +12,9 @@ interface CreateProjectProps {
 export const createProject = async ({
   workspaceId,
   name,
-  userId,
 }: CreateProjectProps) => {
+  const userId = await getUserID();
+
   const currentName = name.trim();
   const membership = await getWorkspaceMembership(userId, workspaceId);
 

@@ -10,6 +10,7 @@ export default async function ProjectsPage({
   const { workspaceId } = await params;
 
   const projects = await getProjectsByWorkspaceId(workspaceId);
+
   return (
     <>
       <form action={createProjectAction}>
