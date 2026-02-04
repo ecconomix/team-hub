@@ -37,13 +37,13 @@ export const updateTask = async ({
 
   const membership = await getWorkspaceMembership(
     userId,
-    existingTask.project.workspaceId
+    existingTask.project.workspaceId,
   );
 
   if (!membership) {
     throw new AppError(
       AppErrorCode.FORBIDDEN,
-      "You do not have permission to update this task"
+      "You do not have permission to update this task",
     );
   }
 
@@ -70,7 +70,7 @@ export const updateTask = async ({
 
   const updatedTask = await prisma.task.update({
     where: { id: taskId },
-    data: { title, status },
+    data,
     select: { id: true },
   });
 

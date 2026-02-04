@@ -74,7 +74,7 @@ export default async function ProjectPage({
           </div>
         ))}
       </div>
-      <form action={createTaskAction}>
+      <form action={createTaskAction} className="flex gap-2">
         <input
           className="border border-gray-300 rounded-md p-2"
           type="text"
